@@ -1,0 +1,190 @@
+:root {
+  --primary-bg: #091530;
+  --accent-color: #00e0ff;
+  --text-light: #ffffff;
+  --text-dark: #000000;
+  --card-bg: #fff;
+  --font: 'Poppins', sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: var(--font);
+  background-color: var(--primary-bg);
+  color: var(--text-light);
+  line-height: 1.6;
+}
+
+.hero-section {
+  background: url("../img/comhero.jpg") center/cover no-repeat;
+  height: 80vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.hero-section h1 {
+  font-size: 3rem;
+  color: var(--text-light);
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.6);
+}
+
+.history-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 600px;
+  padding: 2rem 4%;
+  background-color: #ffffff;
+  color: #000;
+}
+
+.history-text {
+  flex: 1;
+  padding-right: 2rem;
+}
+
+.history-text h2 {
+  font-size: 2rem;
+  color: var(--primary-bg);
+  margin-bottom: 1rem;
+}
+
+.history-text p {
+  margin-bottom: 1rem;
+}
+
+.history-text button {
+  background: var(--accent-color);
+  color: #000;
+  padding: 0.6rem 1.5rem;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.3s;
+}
+
+.history-text button:hover {
+  background: #00c4e4;
+}
+
+.history-img {
+  flex: 1;
+  max-width: 50%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.project-section {
+  background: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
+  padding: 4rem 2rem;
+  text-align: center;
+  color: #fff;
+}
+
+.project-form {
+  background-color: rgba(0, 0, 0, 0.7);
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.project-form input,
+.project-form textarea {
+  width: 100%;
+  padding: 0.8rem;
+  margin-bottom: 1rem;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.project-form button {
+  background: var(--accent-color);
+  color: #000;
+  padding: 0.8rem 2rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.project-form button:hover {
+  background: #00c4e4;
+}
+
+@media (max-width: 900px) {
+  .history-section {
+    flex-direction: column;
+    height: auto;
+    text-align: center;
+  }
+  .history-text {
+    padding-right: 0;
+    margin-bottom: 2rem;
+  }
+  .hero-section h1 {
+    font-size: 2rem;
+  }
+  .project-form {
+    padding: 1.5rem;
+  }
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    color: #00c4e4;
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    max-width: 500px;
+    width: 90%;
+    position: relative;
+}
+
+.close-modal {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--primary-color);
+}
+
+.team-section img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.team-section .container {
+  max-width: 90%; 
+}
+
+.team-section .btn {
+  padding: 0.4rem 1rem;
+  font-size: 0.875rem;
+  border-radius: 6px;
+}

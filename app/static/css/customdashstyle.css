@@ -1,0 +1,177 @@
+.dashboard-container {
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+  flex-direction: row;
+}
+
+.sidebar {
+  width: 220px;
+  background-color: #0b132b;
+  color: #fff;
+  padding: 2rem 1rem;
+  min-height: 100vh;
+  position: sticky;
+  top: 0;
+  flex-shrink: 0;
+}
+
+
+.sidebar nav ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.sidebar nav ul li {
+  padding: 0.8rem;
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+  border-radius: 6px;
+  text-align: left;
+  transition: background 0.3s ease;
+}
+
+.sidebar nav ul li.active,
+.sidebar nav ul li:hover {
+  background-color: #1c2541;
+}
+
+.main-panel {
+  flex: 1;
+  padding: 2rem;
+  overflow-y: auto;
+  background-color: #0b132b;
+}
+
+.tab {
+  display: none;
+}
+
+.active-tab {
+  display: block;
+}
+
+.quick-cards {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+
+.card {
+  flex: 1 1 250px;
+  background: #0b132b;
+  padding: 1.2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.btn {
+  display: inline-block;
+  background-color: #0b132b;
+  color: white;
+  padding: 0.7rem 1.4rem;
+  border-radius: 8px;
+  margin-top: 1rem;
+  text-decoration: none;
+  transition: background 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #1c2541;
+}
+
+/* TABLE STYLES */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+  font-size: 0.95rem;
+}
+
+th, td {
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  text-align: left;
+  vertical-align: top;
+}
+
+thead {
+  background-color: #0b132b;
+  font-weight: bold;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #f0f0f0;
+  color: #0b132b;
+}
+
+/* MOBILE RESPONSIVENESS */
+@media (max-width: 768px) {
+  .dashboard-container {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    min-height: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    padding: 1rem;
+    overflow-x: auto;
+  }
+
+  .sidebar nav ul {
+    display: flex;
+    gap: 1rem;
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .sidebar nav ul li {
+    flex: 1;
+    margin-bottom: 0;
+    padding: 0.6rem;
+  }
+
+  .main-panel {
+    padding: 1rem;
+  }
+
+  table, thead, tbody, th, td, tr {
+    display: block;
+  }
+
+  thead {
+    display: none;
+  }
+
+  tr {
+    margin-bottom: 1rem;
+    background-color: #0b132b;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  td {
+    padding: 0.75rem;
+    text-align: right;
+    position: relative;
+  }
+
+  td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-weight: bold;
+    color: #fffefe;
+    text-align: left;
+  }
+}
