@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% block title %}Home | ArdenCyber{% endblock %}
+
+{% block content %}  
+<div class="contact-container">
+
+  <button class="open-contact-btn" onclick="openContactForm()">Contact Us</button>
+
+  <div class="contact-modal" id="contactModal">
+    <div class="contact-form-card">
+      <span class="close-btn" onclick="closeContactForm()">&times;</span>
+      
+      <h2 style="color: #0b132b;">Send Us A Message</h2>
+      <p style="color: #0b132b">Have a question, project idea, or just want to connect? We'd love to hear from you.</p>
+      
+    <form method="POST" action="{{ url_for('main.send_message') }}">
+      <div class="two-columns">
+        <input type="text" name="name" placeholder="Name" required>
+        <input type="text" name="company" placeholder="Company"> 
+      </div>
+      <div class="two-columns">
+        <input type="tel" name="phone" placeholder="Phone"> 
+        <input type="email" name="email" placeholder="Email" required>
+      </div>
+      <input type="text" name="subject" placeholder="Subject">
+      <textarea name="body" placeholder="Message" rows="4"></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+
+    </div>
+  </div>
+
+
+  <div class="contact-info-card">
+    <h2 style="color: #0b132b;">Get In Touch</h2>
+
+    <div class="info-block">
+      
+      <div>
+        <h4 style="color: #0b132b;">Location</h4>
+        <p style="color: #0b132b;">ArdenCyber HQ - Accra, Ghana<br>Remote clients & partnerships welcome</p>
+      </div>
+    </div>
+
+    <div class="info-block">
+      <i class="bx bxl-email"></i></a>
+      <div>
+        <h4 style="color: #0b132b;">Email</h4>
+        <p style="color: #0b132b;">info@ardencyber.com<br>We respond within 24 hrs.</p>
+      </div>
+    </div>
+
+    <div class="info-block">
+      <i class="bx bxl-phone"></i></a>
+      <div>
+        <h4 style="color: #0b132b;">Call To Us</h4>
+        <p style="color: #0b132b;">info@ardencyber.com<br>Phone replies within 24 hrs.</p>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script>
+function openContactForm() {
+  document.getElementById('contactModal').style.display = 'flex';
+}
+
+function closeContactForm() {
+  document.getElementById('contactModal').style.display = 'none';
+}
+
+window.onclick = function(event) {
+  const modal = document.getElementById('contactModal');
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+</script>
+
+{% endblock %}
+

@@ -1,0 +1,137 @@
+{% extends "base.html" %}
+{% block title %}Dashboard | ArdenCyber{% endblock %}
+
+{% block content %}
+<div class="dashboard-container">
+  <aside class="sidebar">
+    <nav>
+      <ul>
+        <li onclick="showTab('overview')" class="active">Dashboard</li>
+        <li onclick="showTab('orders')">Orders</li>
+        <li onclick="showTab('downloads')">Downloads</li>
+        <li onclick="showTab('messages')">Messages</li>
+        <li onclick="showTab('myorders')">My custom orders</li>
+        <li onclick="location.href='/auth/logout'">Logout</li>
+      </ul>
+    </nav>
+  </aside>
+
+  <main class="main-panel">
+    <div id="overview" class="tab active-tab">
+      <h2>Welcome, {{ current_user.username }}</h2>
+      <p>Email: {{ current_user.email }}</p>
+      <div class="quick-cards">
+        <div class="card">Total Orders: {{ orders|length }}</div>
+        <div class="card">Total Cost: ${{ total_cost }}</div>
+        <div class="card">Messages: {{ user_messages|length }}</div>
+      </div>
+    </div>
+
+    <div id="orders" class="tab">
+      <h2>My Orders</h2>
+      {% if orders %}
+      <table>
+        <thead>
+          <tr>
+            <th>Service</th>
+            <th>Status</th>
+            <th>Cost</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for order in orders %}
+          <tr>
+            <td>{{ order.service.title }}</td>
+            <td>{{ order.status }}</td>
+            <td>${{ order.service.price }}</td>
+            <td>{{ order.created_at.strftime('%Y-%m-%d') }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      {% else %}
+      <p>You have no orders.</p>
+      {% endif %}
+    </div>
+
+    <div id="myorders" class="tab">
+      <h2>My Custom Orders</h2>
+      {% if custom_orders %}
+      <table>
+        <thead>
+          <tr>
+            <th>Company Name</th>
+            <th>Description</th>
+            <th>Price Range</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for order in custom_orders %}
+          <tr>
+            <td>{{ order.company_name }}</td>
+            <td>{{ order.order_description }}</td>
+            <td>{{ order.price_range }}</td>
+            <td>{{ order.created_at.strftime('%Y-%m-%d') }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      {% else %}
+      <p>You have no custom orders.</p>
+      {% endif %}
+    </div>
+
+
+    <div id="downloads" class="tab">
+      <h2>Downloads</h2>
+      <ul>
+        <li><a href="#">Invoice_001.pdf</a></li>
+        <li><a href="#">Report_August2025.pdf</a></li>
+      </ul>
+    </div>
+
+    <div id="messages" class="tab">
+      <h2>Messages & Support</h2>
+      {% if user_messages %}
+        <table>
+          <thead>
+            <tr>
+              <th>Subject</th>
+              <th>Message</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for message in user_messages %}
+            <tr>
+              <td>{{ message.subject }}</td>
+              <td>{{ message.body|truncate(60) }}</td>
+              <td>{{ message.created_at.strftime('%Y-%m-%d') }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      {% else %}
+        <p>No messages found.</p>
+      {% endif %}
+      <a href="/contact" class="btn">Contact Support</a>
+    </div>
+
+  </main>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+function showTab(id) {
+  const tabs = document.querySelectorAll('.tab');
+  const links = document.querySelectorAll('.sidebar li');
+  tabs.forEach(t => t.classList.remove('active-tab'));
+  links.forEach(l => l.classList.remove('active'));
+  document.getElementById(id).classList.add('active-tab');
+  event.target.classList.add('active');
+}
+</script>
+{% endblock %}

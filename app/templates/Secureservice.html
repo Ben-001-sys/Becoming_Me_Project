@@ -1,0 +1,199 @@
+{% extends "base.html" %}
+{% block title %}Home | ArdenCyber{% endblock %}
+
+{% block content %}
+<section class="services-section" style="background-color: #0b132b; border-radius: 50px;">
+
+  <div class="heading-container">
+    <div class="section-header">
+      <h1>Security Configuration & Hardening Services</h1>
+      <p class="subtitle">Professional security optimization for your systems and networks</p>
+    </div>
+  </div>
+</section>
+
+<div class="container my-5">
+  <div class="text-center mb-3">
+    <h5 class="fw-semibold">Watch Our Story</h5>
+  </div>
+  <div class="mx-auto rounded overflow-hidden shadow" style="max-width: 720px;">
+    <div class="ratio ratio-16x9">
+      <video controls class="rounded">
+        <source src="{{ url_for('static', filename='img/Tester.mp4') }}" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+  </div>
+</div>
+
+  <section class="service-cards">
+
+  <div class="card copper">
+    <h2>Copper Tier - System Review</h2>
+    <ul>
+      <li>Scan for misconfigurations on 1-2 systems</li>
+      <li>Review basic firewall and access control rules</li>
+      <li>Simple fix recommendations</li>
+    </ul>
+    <div class="price">$199</div>
+    <button class="order-btn" onclick="openOrderForm(1)">Order Now</button>
+  </div>
+
+  <div class="card silver">
+    <h2>Silver Tier - Network &<br>OS Hardening</h2>
+    <ul>
+      <li>Router/firewall rules audit</li>
+      <li>Local user privilege review</li>
+      <li>Patch management advisory</li>
+      <li> secure service config<br>.</li>
+    </ul>
+    <div class="price">$399</div>
+    <button class="order-btn" onclick="openOrderForm(2)">Order Now</button>
+  </div>
+
+  <div class="card gold">
+    <h2>Gold Tier - Advanced Simulation</h2>
+    <ul>
+      <li>Full network segmentation advice</li>
+      <li>Active Directory security audit</li>
+      <li>Zero trust implementation roadmap</li>
+    </ul>
+    <div class="price">$799</div>
+    <button class="order-btn" onclick="openOrderForm(3)">Order Now</button>
+  </div>
+  </section>
+
+
+<div class="modal" id="orderModal">
+  <div class="modal-content">
+    <span class="close" onclick="closeOrderForm()">&times;</span>
+    <h3 style="color: #0b132b;">Complete Your Order</h3>
+      <form method="POST" action="{{ url_for('main.place_order') }}">
+        <input type="hidden" name="service_id" id="serviceIdInput">
+
+        <div class="form-group">
+          <label for="company_name">Company Name:</label>
+          <input type="text" name="company_name" required>
+        </div>
+
+        <div class="form-group">
+          <label for="location">Location:</label>
+          <input type="text" name="location" required>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input type="email" name="email" required>
+
+        </div>
+
+        <div class="form-group">
+          <label for="order_description">Order Description:</label>
+          <textarea name="order_description" rows="4" required></textarea>
+        </div>
+
+        <button type="submit" class="submit-btn">Submit Order</button>
+      </form>
+  </div>
+</div>
+
+
+<div class="text-center my-4">
+  <button id="openCustomOrderBtn" class="btn px-4 py-2 text-white rounded-pill shadow"
+    style="background-color: #2d3c68; border: none;">
+    Request Custom Order
+  </button>
+</div>
+
+<div id="customOrderModal" style="
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background-color: rgba(0,0,0,0.6);
+  z-index: 1050;">
+  
+  <div class="modal-content p-4 rounded shadow" style="
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    max-width: 600px;
+    width: 90%;">
+    
+    <span class="close d-block text-end mb-2" style="cursor: pointer; font-size: 1.5rem;" onclick="closeCustomOrderModal()">&times;</span>
+    
+    <h3 class="text-center mb-4" style="color: #0b132b;">Submit a Custom Order</h3>
+    <form method="POST" action="{{ url_for('main.custom_order') }}">
+      <div class="mb-3">
+        <label for="company_name" class="form-label">Company Name:</label>
+        <input type="text" name="company_name" class="form-control" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="location" class="form-label">Location:</label>
+        <input type="text" name="location" class="form-control" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="email" class="form-label">Email:</label>
+        <input type="email" name="email" class="form-control" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="order_description" class="form-label">Describe your custom service:</label>
+        <textarea name="order_description" rows="4" class="form-control" required></textarea>
+      </div>
+
+      <div class="mb-4">
+        <label for="price_range" class="form-label">Estimated Price Range:</label>
+        <input type="text" name="price_range" class="form-control" placeholder="$100 - $300" required>
+      </div>
+
+      <button type="submit" class="btn w-100 text-white" style="background-color: #0b132b;">Submit</button>
+    </form>
+  </div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script>
+function openOrderForm(serviceId) {
+  const modal = document.getElementById('orderModal');
+  const input = document.getElementById('serviceIdInput');
+  if (modal && input) {
+    modal.style.display = 'flex';
+    input.value = serviceId;
+  } else {
+    console.error("Modal or input missing!");
+  }
+}
+
+function closeOrderForm() {
+  const modal = document.getElementById('orderModal');
+  if (modal) modal.style.display = 'none';
+}
+
+
+window.onclick = (event) => {
+  const modal = document.getElementById('orderModal');
+  if (event.target === modal) closeOrderForm();
+};
+
+    function openCustomOrderModal() {
+      document.getElementById('customOrderModal').style.display = 'block';
+    }
+
+    function closeCustomOrderModal() {
+      document.getElementById('customOrderModal').style.display = 'none';
+    }
+
+    document.getElementById('openCustomOrderBtn').addEventListener('click', openCustomOrderModal);
+
+    window.onclick = function(event) {
+      const modal = document.getElementById('customOrderModal');
+      if (event.target === modal) {
+        modal.style.display = 'none';
+      }
+    }
+</script>
+{% endblock %}

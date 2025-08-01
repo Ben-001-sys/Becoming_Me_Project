@@ -1,0 +1,181 @@
+{% extends "base.html" %}
+{% block title %}Home | ArdenCyber{% endblock %}
+
+{% block content %}
+<section class="services-section" style="background-color: #0b132b; border-radius: 50px;">
+  <div class="heading-container">
+    <div class="section-header">
+      <h1>Awareness, Compliance & Training Services</h1>
+      <p class="subtitle">Professional security optimization for your systems and networks</p>
+    </div>
+  </div>
+</section>
+
+  <section class="service-cards">
+  <div class="card copper">
+    <h2>Copper Tier - Phishing Simulation + Report</h2>
+    <ul>
+      <li>Simulated email campaign to test user awareness</li>
+      <li>Simple PDF report with click rates and risk analysis</li>
+      <li>First-time security awareness programs</li>
+    </ul>
+    <div class="price">$199</div>
+    <button class="order-btn" onclick="openOrderForm(7)">Order Now</button>
+  </div>
+
+  <div class="card silver">
+    <h2>Silver Tier - Compliance Readiness + Training</h2>
+    <ul>
+      <li>Gap assessment for PCI-DSS, HIPAA, or ISO 27001</li>
+      <li>Staff training on phishing, passwords, and social engineering</li>
+      <li>Templates: Acceptable Use Policy, Incident Response </li>
+    </ul>
+    <div class="price">$399</div>
+    <button class="order-btn" onclick="openOrderForm(8)">Order Now</button>
+  </div>
+
+  <div class="card gold">
+    <h2>Gold Tier - Full Security Culture Program</h2>
+    <ul>
+      <li>Custom workshops + role-based training</li>
+      <li>Internal policy drafting & simulation labs </li>
+      <li>Compliance audit support and documentation <br>.<br>. </li>
+    </ul>
+    <div class="price">$799</div>
+    <button class="order-btn" onclick="openOrderForm(9)">Order Now</button>
+  </div>
+  </section>
+
+<div class="modal" id="orderModal">
+  <div class="modal-content">
+    <span class="close" onclick="closeOrderForm()">&times;</span>
+    <h3 style="color:  #0b132b;">Complete Your Order</h3>
+      <form method="POST" action="{{ url_for('main.place_order') }}">
+        <input type="hidden" name="service_id" id="serviceIdInput">
+
+        <div class="form-group">
+          <label for="company_name">Company Name:</label>
+          <input type="text" name="company_name" required>
+        </div>
+
+        <div class="form-group">
+          <label for="location">Location:</label>
+          <input type="text" name="location" required>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input type="email" name="email" required>
+
+        </div>
+
+        <div class="form-group">
+          <label for="order_description">Order Description:</label>
+          <textarea name="order_description" rows="4" required></textarea>
+        </div>
+
+        <button type="submit" class="submit-btn">Submit Order</button>
+      </form>
+  </div>
+</div>
+
+
+<div class="text-center my-4">
+  <button id="openCustomOrderBtn" class="btn px-4 py-2 text-white rounded-pill shadow"
+    style="background-color: #2d3c68; border: none;">
+    Request Custom Order
+  </button>
+</div>
+
+<div id="customOrderModal" style="
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background-color: rgba(0,0,0,0.6);
+  z-index: 1050;">
+  
+  <div class="modal-content p-4 rounded shadow" style="
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    max-width: 600px;
+    width: 90%;">
+    
+    <span class="close d-block text-end mb-2" style="cursor: pointer; font-size: 1.5rem;" onclick="closeCustomOrderModal()">&times;</span>
+    
+    <h3 class="text-center mb-4" style="color: #0b132b;">Submit a Custom Order</h3>
+    <form method="POST" action="{{ url_for('main.custom_order') }}">
+      <div class="mb-3">
+        <label for="company_name" class="form-label">Company Name:</label>
+        <input type="text" name="company_name" class="form-control" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="location" class="form-label">Location:</label>
+        <input type="text" name="location" class="form-control" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="email" class="form-label">Email:</label>
+        <input type="email" name="email" class="form-control" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="order_description" class="form-label">Describe your custom service:</label>
+        <textarea name="order_description" rows="4" class="form-control" required></textarea>
+      </div>
+
+      <div class="mb-4">
+        <label for="price_range" class="form-label">Estimated Price Range:</label>
+        <input type="text" name="price_range" class="form-control" placeholder="$100 - $300" required>
+      </div>
+
+      <button type="submit" class="btn w-100 text-white" style="background-color: #0b132b;">Submit</button>
+    </form>
+  </div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script>
+function openOrderForm(serviceId) {
+  const modal = document.getElementById('orderModal');
+  const input = document.getElementById('serviceIdInput');
+  if (modal && input) {
+    modal.style.display = 'flex';
+    input.value = serviceId;
+  } else {
+    console.error("Modal or input missing!");
+  }
+}
+
+function closeOrderForm() {
+  const modal = document.getElementById('orderModal');
+  if (modal) modal.style.display = 'none';
+}
+
+window.onclick = (event) => {
+  const modal = document.getElementById('orderModal');
+  if (event.target === modal) closeOrderForm();
+};
+
+    function openCustomOrderModal() {
+      document.getElementById('customOrderModal').style.display = 'block';
+    }
+
+    function closeCustomOrderModal() {
+      document.getElementById('customOrderModal').style.display = 'none';
+    }
+
+    document.getElementById('openCustomOrderBtn').addEventListener('click', openCustomOrderModal);
+
+    window.onclick = function(event) {
+      const modal = document.getElementById('customOrderModal');
+      if (event.target === modal) {
+        modal.style.display = 'none';
+      }
+    }
+</script>
+{% endblock %}
+

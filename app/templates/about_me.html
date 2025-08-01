@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+{% block title %}Home | ArdenCyber{% endblock %}
+
+{% block content %} 
+<section class="b">
+   <section class="home">
+        <div class="home-img">
+            <img src="{{ url_for('static', filename='img/man.jpg') }}">
+        </div>
+            <div class="home-content">
+                    <h4>Hi, It's <span> Benjamin</span></h4>
+                    <h5 class="typing-text">I'm a<span></span></h5>
+                    <p>Hi, I'm Benjamin — a creative designer and digital problem solver.
+I specialize in crafting impactful visuals and user-friendly experiences through graphic design, video editing, and promotional media. From event flyers to business ads, I bring ideas to life with design that communicates and converts. Let's build something great together.</p>
+
+                <div class="action-row">
+                    <div class="social-icons">
+                        <a href="https://www.linkedin.com/in/benjamin-hotor-8984a3335/"><i class="bx bxl-linkedin"></i></a>
+                        <a href="https://github.com/Ben-001-sys/S-Project"><i class="bx bxl-github"></i></a>
+                        <a href="https://x.com/BenHotor73958"><i class="bx bxl-twitter"></i></a>
+                        <a href="https://www.instagram.com/benbest087/"><i class="bx bxl-instagram"></i></a>
+                    </div>
+
+                    <a href="#" class="btn">Hire me</a>
+                </div>
+            </div>
+    </section>
+    
+<section class="career-focus">
+  <div class="container">
+    <h2>Career Focus</h2>
+    <p class="intro">
+      I am a <strong>Cybersecurity Specialist and Full-Stack Developer</strong> with a solid background in securing networks and building web systems. My current direction is focused on becoming a <strong>Freelance Cybersecurity Consultant</strong> while blending secure systems with creative solutions.
+    </p>
+
+    <div class="focus-grid">
+      <div class="focus-item">
+        <h3>Vulnerability Testing</h3>
+        <p>Performing security scans and penetration testing to uncover risks and patch weaknesses.</p>
+      </div>
+      <div class="focus-item">
+        <h3>Security Hardening</h3>
+        <p>Configuring firewalls, user permissions, and secure protocols for system hardening.</p>
+      </div>
+      <div class="focus-item">
+        <h3>Awareness & Training</h3>
+        <p>Educating teams and small businesses on digital safety, phishing, and compliance best practices.</p>
+      </div>
+    </div>
+
+    <p class="closing">
+      My work also includes UI/UX design, video editing, and web development — delivering <strong>secure and creative</strong> experiences that help brands grow with confidence.
+    </p>
+  </div>
+</section>
+
+
+   <section class="about-section">
+        <div class="what-i-do">
+            <h2 class="section-title">What I Do</h2>
+            <p>Hotor Benjamin began his cybersecurity journey in 2008, starting as a network administrator before specializing in information security. Over the years, he has worked with Fortune 500 companies, government agencies, and startups to build robust security programs.</p>
+        </div>
+
+        <div class="standby">
+            <h2 class="section-title">What We Stand By</h2>
+            <div class="card-group">
+                <div class="card">
+                    <h3 style="color: #fff;">Our Vision</h3>
+                    <p style="color: #fff;">To build a secure, skilled, and digitally resilient organization. We envision a future where every organization regardless of size is secured.</p>
+                </div>
+                <div class="card">
+                    <h3 style="color: #fff;">Our Mission</h3>
+                    <p style="color: #fff;">To deliver practical cybersecurity solutions, affordable training, and secure digital services that empower businesses.</p>
+                </div>
+                <div class="card">
+                    <h3 style="color: #fff;">Our Values</h3>
+                    <ul>
+                        <li>Security First</li>
+                        <li>Practical Impact</li>
+                        <li>Empowerment Through Education</li>
+                        <li>Integrity & Trust</li>
+                        <li>African-Built, Globally Ready</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

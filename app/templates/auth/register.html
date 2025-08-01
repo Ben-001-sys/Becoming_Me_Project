@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block title %}Register | ArdenCyber{% endblock %}
+
+{% block content %}
+<div class="login-page">
+  <div class="login-container">
+    <h2 style="color: #0b132b;">Create An Account</h2>
+    <form method="POST" action="{{ url_for('auth.register') }}">
+      {{ form.hidden_tag() }}
+      <div>
+        <label for="username" style="color: #0b132b;">Name</label>
+        <div class="input-group">
+          <input type="text" id="username" name="username" placeholder="Username" required />
+        </div>
+        </div>
+      <div>
+        <label for="email" style="color: #0b132b;">Email</label>
+        <div class="input-group">
+          <input type="email" name="email" value="{{ session.get('pending_order', {}).get('email', '') }}" required>
+        </div>
+      </div>
+
+      <div>
+        <label for="password" style="color: #0b132b";>Password</label>
+        <div class="input-group">
+          <input type="password" id="password" name="password" placeholder="Password" required />
+        </div>
+        <div class="forgot-password">
+          <a href="#">Forgot Password</a>
+        </div>
+      </div>
+      <div>
+          <label for="confirm_password" style="color: #0b132b";>Confirm Password</label>
+          <div class="input-group">
+            <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirm Password" required>
+          </div>
+        </div>
+
+      <button type="submit" class="btn-login"><a href="{{ url_for('main.customerdashboard') }}"></a>Sign Up</button>
+
+      <div class="divider" style="color: #0b132b;">or Continue With</div>
+
+      <div class="social-login">
+        <a href="#"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/email.svg" alt="Google" /></a>
+        <a href="#"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" alt="Facebook" /></a>
+        <a href="#"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/apple.svg" alt="Apple" /></a>
+      </div>
+
+      <div class="text-center">
+        <p style="color: #0b132b;">Already have an account? <a href="{{ url_for('auth.login') }}" class="signup-link">Sign in here</a></p>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}

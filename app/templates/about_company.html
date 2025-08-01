@@ -1,0 +1,127 @@
+{% extends "base.html" %}
+{% block title %}Home | ArdenCyber{% endblock %}
+
+{% block content %}
+<section class="hero-section">
+  <h1 style="color: #0b132b;">Welcome to ArdenCyber</h1>
+</section>
+
+<section class="history-section" id="history">
+  <div class="history-text">
+    <h2>About ArdenCyber</h2>
+    <p>Founded in 2020, ArdenCyber began as a small cybersecurity consultancy with a mission to make powerful digital protection accessible to everyone — from startups to enterprises. What started as a passion project by a group of tech-savvy problem-solvers quickly evolved into a trusted brand for real-world cybersecurity solutions....</p>
+    <button><a href="#" class="cta-btn" id="orderBtn">Read more</a></button>
+  </div>
+  <img src="{{ url_for('static', filename='img/aboutc.jpg') }}" alt="Company History" class="history-img">
+</section>
+
+<div class="container my-5">
+  <div class="text-center mb-3">
+    <h5 class="fw-semibold">Watch Our Story</h5>
+  </div>
+  <div class="mx-auto rounded overflow-hidden shadow" style="max-width: 720px;">
+    <div class="ratio ratio-16x9">
+      <video controls class="rounded">
+        <source src="{{ url_for('static', filename='img/ABCC_1.mp4') }}" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+  </div>
+</div>
+
+
+<div class="container py-5">
+  <!-- Team Member 1 -->
+  <div class="row align-items-center mb-5">
+    <div class="col-md-4">
+      <img src="{{ url_for('static', filename='img/IMG_7759.jpg') }}" class="img-fluid rounded shadow" alt="Emmanuel Owusu Boakye">
+    </div>
+    <div class="col-md-8">
+      <h4 class="text-white">Emmanuel Owusu Boakye</h4>
+      <p class="text-light mb-3">Emmanuel Owusu Boakye is a passionate and results-driven Full Stack Web Developer with a strong foundation in both frontend and backend technologies.
+         His journey into web development began with curiosity and a deep desire to build digital solutions that solve real-world problems.</p>
+      <a href="#" class="btn btn-outline-light btn-sm" class="cta-btn" id="TmBtn1">Read More</a>
+    </div>
+  </div>
+
+  <div class="row align-items-center flex-md-row-reverse">
+    <div class="col-md-4">
+      <img src="{{ url_for('static', filename='img/kbb.jpg') }}" class="img-fluid rounded shadow" alt="Team Member 2">
+    </div>
+    <div class="col-md-8">
+      <h4 class="text-white">Elorm Kobby</h4>
+      <p class="text-light mb-3">Elorm Kobby is a creative powerhouse and multimedia specialist with a passion for visual storytelling and digital design. With over 6 years of experience in video editing, motion graphics, and brand media production, Elorm plays a key role in shaping the visual identity and digital content of ArdenCyber.</p>
+      <a href="#" class="btn btn-outline-light btn-sm" class="cta-btn" id="TmBtn2">Read More</a>
+    </div>
+  </div>
+</div>
+
+
+    <div class="modal" id="orderModal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeModal">&times;</span>
+            <h2>ArdenCyber - Our History</h2>
+            <p>Founded in 2020, ArdenCyber began as a small cybersecurity consultancy with a mission to make powerful digital protection accessible to everyone — from startups to enterprises. What started as a passion project by a group of tech-savvy problem-solvers quickly evolved into a trusted brand for real-world cybersecurity solutions.
+              Over the years, we've expanded our services from basic system hardening to full-scale penetration testing, secure application development, and compliance-focused training programs. Our team has grown, our tools have evolved, but our purpose remains the same: to secure your digital presence with simplicity, precision, and integrity.
+              Today, ArdenCyber proudly protects clients across sectors — from finance and healthcare to education.</p>
+        </div>
+    </div>
+
+    <div class="modal" id="team1">
+      <div class="modal-content">
+        <span class="close-modal" id="closeModalTeam1">&times;</span>
+        <h2> Emmanuel Owusu Boakye - Full Stack Web Developer</h2>
+        <p>Emmanuel Owusu Boakye is a passionate and results-driven Full Stack Web Developer with a strong foundation in both frontend and backend technologies. His journey into web development began with curiosity and a deep desire to build digital solutions that solve real-world problems.
+            Driven by purpose and precision, Emmanuel's approach to development combines clean code, intuitive UI/UX, and scalable backend architecture. Whether collaborating in agile teams or building solo, his goal remains the same: to build digital experiences that are not just functional, but meaningful.
+      </div>
+    </div>
+
+        <div class="modal" id="team2">
+      <div class="modal-content">
+        <span class="close-modal" id="closeModalTeam2">&times;</span>
+        <h2> Elorm Kobby - Multimedia Specialist</h2>
+        <p>Elorm Kobby is a creative powerhouse and multimedia specialist with a passion for visual storytelling and digital design. With over 6 years of experience in video editing, motion graphics, and brand media production, Elorm plays a key role in shaping the visual identity and digital content of ArdenCyber.
+          Contributions to ArdenCyber:
+            Leads the visual content strategy for client presentations, product launches, and online visibility efforts.
+            Collaborates closely with the technical team to translate complex security concepts into easy-to-understand multimedia assets.
+            Personal Motto:
+            "If you can visualize it, you can make people believe in it."
+      </div>
+    </div>
+{% endblock %}
+{% block scripts %}
+<script>
+        const modal = document.getElementById('orderModal');
+        const btn = document.getElementById('orderBtn');
+        const span = document.getElementById('closeModal');
+
+        btn.onclick = function() {
+            modal.style.display = 'flex';
+        }
+
+        span.onclick = function() {
+            modal.style.display = 'none';
+        }
+
+        const teamModal = document.getElementById('team1');
+        const teamBtn = document.getElementById('TmBtn1');
+        const closeTeam = document.getElementById('closeModalTeam1');
+
+        teamBtn.onclick = () => teamModal.style.display = 'flex';
+        closeTeam.onclick = () => teamModal.style.display = 'none';
+
+        const teamModal2 = document.getElementById('team2');
+        const teamBtn2 = document.getElementById('TmBtn2');
+        const closeTeam2 = document.getElementById('closeModalTeam2');
+
+        teamBtn2.onclick = () => teamModal2.style.display = 'flex';
+        closeTeam2.onclick = () => teamModal2.style.display = 'none';
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+</script>
+{% endblock %}

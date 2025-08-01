@@ -1,0 +1,145 @@
+{% extends "base.html" %}
+{% block title %}Home | ArdenCyber{% endblock %}
+
+{% block content %}  
+  <!-- How It Works -->
+  <section class="text-center" id="how-it-works">
+    <div class="container">
+      <h2 class="mb-4 fw-bold">How ArdenCyber Works</h2>
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="step-icon mb-3"><i class="bx bx-select-multiple"></i></div>
+          <h5>Choose Service</h5>
+          <p>Select from tailored security solutions built for your business needs.</p>
+        </div>
+        <div class="col-md-4">
+          <div class="step-icon mb-3">🧾</div>
+          <h5>Place an Order</h5>
+          <p>Fill in your details and request the service in a few clicks.</p>
+        </div>
+        <div class="col-md-4">
+          <div class="step-icon mb-3"><i class="bx bx-notepad"></i></div>
+          <h5>We Get to Work</h5>
+          <p>Our cybersecurity experts begin implementing protection instantly.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<section class="py-5" id="services">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 class="fw-bold">Why Choose ArdenCyber</h2>
+      <p class="text-muted">We have been serving clients with top-tier cybersecurity services since 2020.</p>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-4">
+        <a href="{{ url_for('main.Tester') }}" class="text-decoration-none text-dark">
+        <div class="card feature-card p-4 h-100 text-center">
+          <i class="bx bx-target-lock bx-lg mb-3 text-primary"></i>
+          <h5>Vulnerability & Penetration Testing</h5>
+          <p>Simulated attacks to identify system weaknesses before hackers do.</p>
+        </div>
+        </a>
+      </div>
+      <div class="col-md-4">
+        <a href="{{ url_for('main.Secureservice') }}" class="text-decoration-none text-dark">
+        <div class="card feature-card p-4 h-100 text-center">
+          <i class="bx bx-cog bx-lg mb-3 text-primary"></i>
+          <h5>Security Configuration & Hardening</h5>
+          <p>Ensure servers, apps, and devices follow strict security baselines.</p>
+        </div>
+        </a>
+      </div>
+      <div class="col-md-4">
+        <a href="{{ url_for('main.Compliance') }}" class="text-decoration-none text-dark">
+        <div class="card feature-card p-4 h-100 text-center">
+          <i class="bx bx-user-voice bx-lg mb-3 text-primary"></i>
+          <h5>Awareness, Compliance & Training</h5>
+          <p>Empower your team with knowledge to prevent social engineering and stay compliant.</p>
+        </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="text-center my-4">
+  <button id="openCustomOrderBtn" class="btn px-4 py-2 text-white rounded-pill shadow"
+    style="background-color: #2d3c68; border: none;">
+    Request Custom Order
+  </button>
+</div>
+
+<div id="customOrderModal" style="
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background-color: rgba(0,0,0,0.6);
+  z-index: 1050;">
+  
+  <div class="modal-content p-4 rounded shadow" style="
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    max-width: 600px;
+    width: 90%;">
+    
+    <span class="close d-block text-end mb-2" style="cursor: pointer; font-size: 1.5rem;" onclick="closeCustomOrderModal()">&times;</span>
+    
+    <h3 class="text-center mb-4" style="color: #0b132b;">Submit a Custom Order</h3>
+    <form method="POST" action="{{ url_for('main.custom_order') }}">
+      <div class="mb-3">
+        <label for="company_name" class="form-label">Company Name:</label>
+        <input type="text" name="company_name" class="form-control" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="location" class="form-label">Location:</label>
+        <input type="text" name="location" class="form-control" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="email" class="form-label">Email:</label>
+        <input type="email" name="email" class="form-control" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="order_description" class="form-label">Describe your custom service:</label>
+        <textarea name="order_description" rows="4" class="form-control" required></textarea>
+      </div>
+
+      <div class="mb-4">
+        <label for="price_range" class="form-label">Estimated Price Range:</label>
+        <input type="text" name="price_range" class="form-control" placeholder="$100 - $300" required>
+      </div>
+
+      <button type="submit" class="btn w-100 text-white" style="background-color: #0b132b;">Submit</button>
+    </form>
+  </div>
+</div>
+{% endblock %}
+{% block scripts %}
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    function openCustomOrderModal() {
+      document.getElementById('customOrderModal').style.display = 'block';
+    }
+
+    function closeCustomOrderModal() {
+      document.getElementById('customOrderModal').style.display = 'none';
+    }
+
+    document.getElementById('openCustomOrderBtn').addEventListener('click', openCustomOrderModal);
+
+    window.onclick = function(event) {
+      const modal = document.getElementById('customOrderModal');
+      if (event.target === modal) {
+        modal.style.display = 'none';
+      }
+    }
+  </script>
+{% endblock %}

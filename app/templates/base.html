@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}ArdenCyber{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/boxicons.min.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/homestyle.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/aboutme.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/contact.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/aboutcompany.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/loginstyle.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/customdashstyle.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/securestyle.css') }}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<header class="header">
+  <div class="header-left">
+    <div class="logo">
+      <a href="{{ url_for('main.home') }}">
+        <img src="{{ url_for('static', filename='img/1.png') }}" alt="Logo">
+      </a>
+    </div>
+    <button class="hamburger" onclick="toggleNav()">☰</button>
+  </div>
+
+  <div class="nav-wrapper" id="navMenu">
+    <nav class="nav">
+      <ul>
+        <li><a href="{{ url_for('main.home') }}">Home</a></li>
+
+        <li class="dropdown">
+          <button class="dropbtn">About 
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-content">
+            <a href="{{ url_for('main.about_me') }}">About Me</a>
+            <a href="{{ url_for('main.about_company') }}">About Company</a>
+          </div>
+        </li>
+
+        <li><a href="{{ url_for('main.service') }}">Services</a></li>
+        <li><a href="{{ url_for('main.portfolio') }}">Portfolio</a></li>
+        <li><a href="{{ url_for('main.contact') }}">Contact</a></li>
+        {% if current_user.is_authenticated %}
+          <li><a href="{{ url_for('main.customerdashboard') }}">Dashboard</a></li>
+          <li><a href="{{ url_for('auth.logout') }}">Logout</a></li>
+        {% else %}
+          <li><a href="{{ url_for('auth.login') }}">Login</a></li>
+          <li><a href="{{ url_for('auth.register') }}">Register</a></li>
+        {% endif %}
+      </ul>
+    </nav>
+  </div>
+</header>
+
+  <main>
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          <div class="container mt-3">
+            {% for category, message in messages %}
+              <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+            {% endfor %}
+          </div>
+        {% endif %}
+      {% endwith %}
+    {% block content %}{% endblock %}
+    {% block scripts %}{% endblock %}
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-content">
+      <div class="footer-logo">
+        <a href="{{ url_for('main.home') }}">
+          <img src="{{ url_for('static', filename='img/logo.png') }}" alt="ArdenCyber Logo">
+        </a>
+      </div>
+      <div class="footer-nav">
+        <ul>
+          <li><a href="{{ url_for('main.home') }}">Home</a></li>
+          <li><a href="{{ url_for('main.about_me') }}">About Me</a></li>
+          <li><a href="{{ url_for('main.about_company') }}">About Company</a></li>
+          <li><a href="{{ url_for('auth.login') }}">Login</a></li>
+        </ul>
+      </div>
+      <div class="footer-contact">
+        <p><strong>ArdenCyber HQ - Accra, Ghana</strong></p>
+        <p>Email: <a href="mailto:ardencyber@gmail.com">ardencyber@gmail.com</a></p>
+        <p><a href="{{ url_for('main.contact') }}" class="footer-contact-link">Contact Us</a></p>
+      </div>
+    </div>
+  </footer>
+
+<script>
+  function toggleNav() {
+    const nav = document.getElementById('navMenu');
+    nav.classList.toggle('active');
+  }
+</script>
+</body>
+</html>

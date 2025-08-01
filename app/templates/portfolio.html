@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block title %}Portfolio | ArdenCyber{% endblock %}
+
+{% block content %}
+<section class="py-5" style="background-color: #0b132b;">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 class="fw-bold text-white">Our Portfolio</h2>
+      <p class="text-light">Here are some of our recent cybersecurity and tech projects.</p>
+    </div>
+
+    <div class="row g-4">
+      <!-- Portfolio Item 1 -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 shadow-sm">
+          <img src="{{ url_for('static', filename='img/p1.jpg') }}" class="card-img-top img-fluid" style="height: 200px; object-fit: cover;" alt="Project 1">
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title">Secure Web App</h5>
+            <p class="card-text flex-grow-1">Developed a custom secure web portal for enterprise file sharing with full user authentication.</p>
+            <a href="#" class="btn btn-sm btn-outline-primary mt-auto">View Project</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Portfolio Item 2 -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 shadow-sm">
+          <img src="{{ url_for('static', filename='img/p2.jpg') }}" class="card-img-top img-fluid" style="height: 200px; object-fit: cover;" alt="Project 2">
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title">Penetration Testing</h5>
+            <p class="card-text flex-grow-1">Performed full-scale vulnerability assessments and penetration testing for fintech clients.</p>
+            <a href="#" class="btn btn-sm btn-outline-primary mt-auto">View Project</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Portfolio Item 3 -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 shadow-sm">
+          <img src="{{ url_for('static', filename='img/p3.jpg') }}" class="card-img-top img-fluid" style="height: 200px; object-fit: cover;" alt="Project 3">
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title">Cybersecurity Training</h5>
+            <p class="card-text flex-grow-1">Delivered interactive security awareness programs for over 500 employees at a global firm.</p>
+            <a href="#" class="btn btn-sm btn-outline-primary mt-auto">View Project</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+{% endblock %}
